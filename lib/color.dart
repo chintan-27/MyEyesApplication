@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_eyes/text/api.dart';
-import "package:tflite/tflite.dart";
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'tts.dart';
 
-class color extends StatefulWidget {
+class ColorWidget extends StatefulWidget {
+  const ColorWidget({Key? key}) : super(key: key);
+
   @override
-  _colorState createState() => _colorState();
+  _ColorWidgetState createState() => _ColorWidgetState();
 }
 
-class _colorState extends State<color> {
+class _ColorWidgetState extends State<ColorWidget> {
   File? _image;
   String? _outputs;
   bool _loading = false;

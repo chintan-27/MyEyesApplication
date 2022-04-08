@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:my_eyes/text/api.dart';
-import "package:tflite/tflite.dart";
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'tts.dart';
 
-class currency extends StatefulWidget {
+class Currency extends StatefulWidget {
+  const Currency({Key? key}) : super(key: key);
+
   @override
-  _currencyState createState() => _currencyState();
+  _CurrencyState createState() => _CurrencyState();
 }
 
-class _currencyState extends State<currency> {
+class _CurrencyState extends State<Currency> {
   File? _image;
   List? _outputs;
   bool _loading = false;
@@ -42,7 +43,7 @@ class _currencyState extends State<currency> {
               alignment: Alignment.center,
               child: const CircularProgressIndicator(),
             )
-          : Container(
+          : SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Column(

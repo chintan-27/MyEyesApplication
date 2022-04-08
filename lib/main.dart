@@ -1,20 +1,26 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:my_eyes/color.dart';
 import 'package:my_eyes/currency.dart';
+import 'package:my_eyes/pagescreen.dart';
 import 'package:my_eyes/text/expiry.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'tts.dart';
 import 'text/recognise.dart';
 
-void main() {
-  runApp(MyApp());
+List<CameraDescription>? cameras;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Minor',
       debugShowCheckedModeBanner: false,
       home: SpeechScreen(),
@@ -23,6 +29,8 @@ class MyApp extends StatelessWidget {
 }
 
 class SpeechScreen extends StatefulWidget {
+  const SpeechScreen({Key? key}) : super(key: key);
+
   @override
   _SpeechScreenState createState() => _SpeechScreenState();
 }
@@ -87,11 +95,11 @@ class _SpeechScreenState extends State<SpeechScreen> {
             }
 
             if (_text.contains('currency')) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => currency()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Currency()));
             } else if (_text.contains('color') || _text.contains('colour')) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => color()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ColorWidget()));
             } else if (_text.contains('text') || _text.contains('read')) {
               Navigator.push(
                   context,
@@ -102,6 +110,17 @@ class _SpeechScreenState extends State<SpeechScreen> {
             } else if (_text.contains('expiry')) {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Expiry()));
+            } else if (_text.contains('assist') ||
+                _text.contains('assistive') ||
+                _text.contains('')) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PageScreen(
+                    cameras: cameras,
+                  ),
+                ),
+              );
             }
           }),
         );

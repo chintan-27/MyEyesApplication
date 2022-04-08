@@ -1,0 +1,8 @@
+Move your phone away
+Move your phone downwards
+Move your phone towards left
+Move your phone towards right
+Move your phone upwards
+Perfect
+Rotate your phone Anticlockwise
+Rotate your phone Clockwise
